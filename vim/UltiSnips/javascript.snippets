@@ -1,0 +1,37 @@
+snippet log "console.log(...)" b
+console.log($0);
+endsnippet
+
+snippet print "debug with console.log"
+console.log('@@@@@@@@@@@@@@@@@@@@@');
+console.log('$1', $1);
+console.log('@@@@@@@@@@@@@@@@@@@@@');
+endsnippet
+
+snippet deb "insert debugger"
+debugger;
+endsnippet
+
+snippet "f(?P<semicolon>;)?" "anonym function" r
+($1) => {
+  $2
+}`!p snip.rv = match.groupdict()['semicolon'] or ''`
+endsnippet
+
+snippet "fu(?P<semicolon>;)?" "anonym function" r
+function ($1) {
+  $2
+}`!p snip.rv = match.groupdict()['semicolon'] or ''`
+endsnippet
+
+snippet "pro(?P<semicolon>;)?" "promise arrow" r
+new Promise((resolve, reject) => {
+  $2
+})`!p snip.rv = match.groupdict()['semicolon'] or ''`
+endsnippet
+
+snippet "prom(?P<semicolon>;)?" "promise oldskool" r
+new Promise(function(resolve, reject) {
+  $2
+})`!p snip.rv = match.groupdict()['semicolon'] or ''`
+endsnippet
