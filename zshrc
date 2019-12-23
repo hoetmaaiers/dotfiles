@@ -1,10 +1,11 @@
 # Manually set your 'PATH' environment variable
-export PATH="/usr/local/bin:/usr/bin:/bin:/usr/sbin:/sbin:/home/hoetmaaiers/.local/bin:/home/hoetmaaiers/.yarn/bin:$PATH"
+export PATH="/usr/local/bin:/usr/local/sbin:/usr/bin:/bin:/usr/sbin:/sbin:/home/houdmeyr/.local/bin:/home/houdmeyr/.yarn/bin:$HOME/anaconda3/bin/:$PATH"
 
 # =======================================================================
 # Nvm
-export NVM_DIR="/home/hoetmaaiers/.nvm"
-[ -s "$NVM_DIR/nvm.sh" ] && . "$NVM_DIR/nvm.sh"  # This loads nvm
+export NVM_DIR="$HOME/.nvm"
+[ -s "$NVM_DIR/nvm.sh" ] && \. "$NVM_DIR/nvm.sh" # This loads nvm
+
 
 # # place this after nvm initialization!
 # autoload -U add-zsh-hook
@@ -56,4 +57,20 @@ alias zshconfig_load="source ~/.zshrc"
 # alias docker_remove_none_images="docker rmi $(docker images | grep "^<none>" | awk '{print $3}')"
 
 
+
+
+# >>> conda initialize >>>
+# !! Contents within this block are managed by 'conda init' !!
+__conda_setup="$('/Users/houdmeyr/anaconda3/bin/conda' 'shell.zsh' 'hook' 2> /dev/null)"
+if [ $? -eq 0 ]; then
+    eval "$__conda_setup"
+else
+    if [ -f "/Users/houdmeyr/anaconda3/etc/profile.d/conda.sh" ]; then
+        . "/Users/houdmeyr/anaconda3/etc/profile.d/conda.sh"
+    else
+        export PATH="/Users/houdmeyr/anaconda3/bin:$PATH"
+    fi
+fi
+unset __conda_setup
+# <<< conda initialize <<<
 
