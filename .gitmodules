@@ -1,0 +1,18 @@
+[submodule "zsh/zsh_custom/plugins/supercharge"]
+	path = zsh/zsh_custom/plugins/supercharge
+	url = https://github.com/zap-zsh/supercharge.git
+[submodule "zsh/zsh_custom/plugins/zsh-autosuggestions"]
+	path = zsh/zsh_custom/plugins/zsh-autosuggestions
+	url = https://github.com/zsh-users/zsh-autosuggestions
+[submodule "zsh/zsh_custom/plugins/zsh-bat"]
+	path = zsh/zsh_custom/plugins/zsh-bat
+	url = https://github.com/fdellwing/zsh-bat
+[submodule "zsh/zsh_custom/plugins/zsh-completions"]
+	path = zsh/zsh_custom/plugins/zsh-completions
+	url = https://github.com/zsh-users/zsh-completions
+[submodule "zsh/zsh_custom/plugins/zsh-exa"]
+	path = zsh/zsh_custom/plugins/zsh-exa
+	url = https://github.com/ptavares/zsh-exa
+[submodule "zsh/zsh_custom/plugins/zsh-syntax-highlighting"]
+	path = zsh/zsh_custom/plugins/zsh-syntax-highlighting
+	url = https://github.com/zsh-users/zsh-syntax-highlighting
