@@ -1,4 +1,9 @@
-return { 
+return {
+    -- Alpha (Dashboard)
+    {
+        "goolord/alpha-nvim",
+        lazy = true,
+    },
 
     -- Nvimtree (File Explorer)
     {
@@ -7,6 +12,10 @@ return {
         dependencies = {
             'nvim-tree/nvim-web-devicons',
         },
+    },
+
+    {
+        'numToStr/Comment.nvim',
     },
 
       -- Hop (Better Navigation)
@@ -39,6 +48,11 @@ return {
         dependencies = {
             {'nvim-lua/plenary.nvim'},
         }
+    },
+
+    -- Treesitter
+    {
+        "nvim-treesitter/nvim-treesitter",
     },
 
     {
