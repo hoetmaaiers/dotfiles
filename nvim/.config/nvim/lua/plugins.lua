@@ -1,7 +1,4 @@
 return { 
-    -- Which-key Extension
-    "folke/which-key.nvim",
-    lazy = true,
 
     -- Nvimtree (File Explorer)
     {
@@ -34,4 +31,19 @@ return {
     {
         'folke/tokyonight.nvim',
     },
+
+    -- Telescope (Fuzzy Finder)
+    {
+        'nvim-telescope/telescope.nvim',
+        lazy = true,
+        dependencies = {
+            {'nvim-lua/plenary.nvim'},
+        }
+    },
+
+    {
+        -- Which-key Extension
+        "folke/which-key.nvim",
+        lazy = true,
+    }
 }
