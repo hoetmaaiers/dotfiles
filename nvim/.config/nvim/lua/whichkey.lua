@@ -80,11 +80,26 @@ local opts = {
 
 local mappings = {
 
+["a"] = { "<cmd>Alpha<cr>", "Alpha" },
     ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" }, -- File Explorer
     ["k"] = { "<cmd>bdelete<CR>", "Kill Buffer" },  -- Close current file
+    ["m"] = { "<cmd>Mason<cr>", "Mason" }, -- LSP Manager
     ["p"] = { "<cmd>Lazy<CR>", "Plugin Manager" }, -- Invoking plugin manager
     ["q"] = { "<cmd>wqall!<CR>", "Quit" }, -- Quit Neovim after saving the file
+    ["r"] = { "<cmd>lua vim.lsp.buf.format{async=true}<cr>", "Reformat Code" },
     ["w"] = { "<cmd>w!<CR>", "Save" }, -- Save current file
+
+    -- Language Support
+    l = {
+        name = "LSP",
+        i = { "<cmd>LspInfo<cr>", "Info" },
+        r = { "<cmd>lua vim.lsp.buf.rename()<cr>", "Rename" },
+        s = { "<cmd>Telescope lsp_document_symbols<cr>", "Document Symbols" },
+        S = {
+            "<cmd>Telescope lsp_dynamic_workspace_symbols<cr>",
+            "Workspace Symbols",
+        },
+    },
 
     -- Telescope
     f= {
