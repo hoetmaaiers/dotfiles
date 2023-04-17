@@ -6,6 +6,8 @@ if not status_ok then
 end
 
 
+require('nvim-lightbulb').setup({autocmd = {enabled = true}})
+
 local actions = require("telescope.actions")
 require('telescope').setup{
   defaults = {

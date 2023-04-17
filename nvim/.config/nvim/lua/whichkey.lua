@@ -80,7 +80,7 @@ local opts = {
 
 local mappings = {
 
-["a"] = { "<cmd>Alpha<cr>", "Alpha" },
+    ["a"] = { "<cmd>Alpha<cr>", "Alpha" },
     ["e"] = { "<cmd>NvimTreeToggle<cr>", "Explorer" }, -- File Explorer
     ["k"] = { "<cmd>bdelete<CR>", "Kill Buffer" },  -- Close current file
     ["m"] = { "<cmd>Mason<cr>", "Mason" }, -- LSP Manager

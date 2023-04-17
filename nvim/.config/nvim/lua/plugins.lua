@@ -33,7 +33,7 @@ return {
     -- Lualine
     {
         'nvim-lualine/lualine.nvim',
-        dependencies = 'nvim-tree/nvim-web-devicons' 
+        dependencies = 'nvim-tree/nvim-web-devicons'
     },
 
     -- Language Support
@@ -79,9 +79,15 @@ return {
         "nvim-treesitter/nvim-treesitter",
     },
 
+    -- Which-key Extension
     {
-        -- Which-key Extension
         "folke/which-key.nvim",
         lazy = true,
+    },
+
+    {
+        'kosayoda/nvim-lightbulb',
+        dependencies = 'antoinemadec/FixCursorHold.nvim',
     }
+
 }
