@@ -19,8 +19,10 @@ ZSH_THEME="robbyrussell"
 # Example format: plugins=(rails git textmate ruby lighthouse)
 # Add wisely, as too many plugins slow down shell startup.
 plugins=(
-	git
-	macos
+  macos
+  git
+  docker
+  docker-compose
   zsh-autosuggestions
   zsh-completions
   zsh-syntax-highlighting
@@ -31,7 +33,7 @@ plugins=(
   zsh-exa
   zsh-bat
   supercharge
-  vi-mode
+  # vi-mode
 )
 
 # Uncomment the following line to use hyphen-insensitive completion.
@@ -52,6 +54,7 @@ source $HOME/.config/zsh/aliases.zsh
 source $HOME/.config/zsh/exports.zsh
 
 source $ZSH/oh-my-zsh.sh
+autoload -U compinit && compinit
 
 # User configuration
 
