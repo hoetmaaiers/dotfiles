@@ -34,4 +34,4 @@ autocmd("BufRead", {
 	command = [[call setpos(".", getpos("'\""))]],
 })
 
-vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb({ ignore = {"null-ls"} })]])
+-- vim.cmd([[autocmd CursorHold,CursorHoldI * lua require'nvim-lightbulb'.update_lightbulb({ ignore = {"null-ls"} })]])
