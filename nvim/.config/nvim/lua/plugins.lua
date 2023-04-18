@@ -39,8 +39,9 @@ return {
 
     -- Colorscheme
     {
-        'folke/tokyonight.nvim',
+        'folke/tokyonight.nvim', lazy = false,
     },
+    { 'projekt0n/github-nvim-theme', tag = 'v0.0.7',},
 
     -- Telescope (Fuzzy Finder)
     {
@@ -54,6 +55,16 @@ return {
     -- Treesitter
     {
         "nvim-treesitter/nvim-treesitter",
+    },
+
+
+    -- Indentation style
+    {
+        "lukas-reineke/indent-blankline.nvim",
+        lazy = false,
+        init = function ()
+            show_end_of_line = true
+        end,
     },
 
     -- Which-key Extension

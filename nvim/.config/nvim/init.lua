@@ -6,7 +6,7 @@ require "options"
 
 require "alpha-config"
 require "nvim-tree-config"
-require "hop-config"
+-- require "hop-config"
 require "comment-config"
 require "lualine-config"
 require "bufferline-config"

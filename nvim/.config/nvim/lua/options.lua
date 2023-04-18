@@ -16,6 +16,7 @@ opt.inccommand = "nosplit" -- preview incremental substitute
 opt.incsearch = true
 opt.laststatus = 0
 opt.list = true -- Show some invisible characters (tabs...
+opt.listchars:append "eol:↴" -- end of line character
 opt.mouse = "a" -- Enable mouse mode
 opt.number = true -- Print line number
 opt.pumblend = 10 -- Popup blend
@@ -47,4 +48,4 @@ opt.wrap = false -- Disable line wrap
 -- Fix markdown indentation settings
 vim.g.markdown_recommended_style = 0
 
-vim.cmd[[colorscheme tokyonight-day]]
+vim.cmd[[colorscheme github_light_default]]
