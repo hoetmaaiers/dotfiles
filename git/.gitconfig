@@ -1,0 +1,23 @@
+[user]
+	name = hoetmaaiers
+	email = robin.houdmeyers@gmail.com
+[core]
+	editor = vim
+[color]
+	ui = true
+	diff = auto
+	status = auto
+	branch = auto
+[init]
+	defaultBranch = main
+[alias]
+	ls = "!f() { git log $1 --pretty=format:\"%C(yellow)%h%Cred%d\\\\ %Creset%s%Cgreen\\\\ [%ae,%ar]\" --decorate --graph; }; f"
+[filter "lfs"]
+	clean = git-lfs clean -- %f
+	smudge = git-lfs smudge -- %f
+	process = git-lfs filter-process
+	required = true
+
+
+[remote "origin"]
+	prune = true
