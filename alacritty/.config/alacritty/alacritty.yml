@@ -14,7 +14,8 @@ import:
   #  - ~/.config/alacritty/catppuccin/catppuccin-macchiato.yml
   #  - ~/.config/alacritty/catppuccin/catppuccin-frappe.yml
   #  - ~/.config/alacritty/catppuccin/catppuccin-latte.yml
-   - ~/.config/alacritty/github-theme-contrib/alacritty/github_light.yml
+  - ~/.config/alacritty/themes/themes/github_light.yaml
+  # - ~/.config/alacritty/themes/themes/github_dark.yaml
 
 # Any items in the `env` entry below will be added as
 # environment variables. Some entries may override variables
@@ -132,16 +133,16 @@ scrolling:
 # Font configuration
 font:
   normal:
-    family: "JetBrainsMono Nerd Font"
+    family: "Fira Code"
     style: Regular
   bold:
-    family: "JetBrainsMono Nerd Font"
+    family: "Fira Code"
     style: Bold
   italic:
-    family: "JetBrainsMono Nerd Font"
+    family: "Fira Code"
     style: Italic
   bold_italic:
-    family: "JetBrainsMono Nerd Font"
+    family: "Fira Code"
     style: Bold Italic
 
   # Point size
