@@ -10,10 +10,6 @@
 # to the user's home directory starting with `~/`.
 import:
   # uncomment the flavour you want below:
-  # - ~/.config/alacritty/catppuccin/catppuccin-mocha.yml
-  #  - ~/.config/alacritty/catppuccin/catppuccin-macchiato.yml
-  #  - ~/.config/alacritty/catppuccin/catppuccin-frappe.yml
-  #  - ~/.config/alacritty/catppuccin/catppuccin-latte.yml
   - ~/.config/alacritty/themes/themes/github_light.yaml
   # - ~/.config/alacritty/themes/themes/github_dark.yaml
 
@@ -107,10 +103,6 @@ window:
   #
   # Override the variant of the System theme/GTK theme/Wayland client side
   # decorations. Commonly supported values are `Dark`, `Light`, and `None` for
-  # auto pick-up. Set this to `None` to use the default theme variant.
-  #decorations_theme_variant: None
-
-  # Resize increments
   #
   # Prefer resizing window by discrete steps equal to cell dimensions.
   #resize_increments: false
@@ -130,20 +122,41 @@ scrolling:
   # Scrolling distance multiplier.
   multiplier: 3
 
-# Font configuration
+# Font configuration (changes require restart)
 font:
+  # Normal (roman) font face
   normal:
-    family: "Fira Code"
+    family: JetBrains Mono
+    # The `style` can be specified to pick a specific face.
     style: Regular
+
+  # Bold font face
   bold:
-    family: "Fira Code"
+    family: JetBrains Mono
+    # The `style` can be specified to pick a specific face.
     style: Bold
+
+  # Italic font face
   italic:
-    family: "Fira Code"
+    family: JetBrains Mono
+    # The `style` can be specified to pick a specific face.
     style: Italic
-  bold_italic:
-    family: "Fira Code"
-    style: Bold Italic
+
+  # Point size of the font
+  size: 12.0
+
+  # Offset is the extra space around each character. `offset.y` can be thought of
+  # as modifying the line spacing, and `offset.x` as modifying the letter spacing.
+  offset:
+    x: 0
+    y: 0
+
+  # Glyph offset determines the locations of the glyphs within their cells with
+  # the default being at the bottom. Increasing `x` moves the glyph to the right,
+  # increasing `y` moves the glyph upwards.
+  glyph_offset:
+    x: 0
+    y: 0
 
   # Point size
   size: 13.0
@@ -662,6 +675,10 @@ cursor:
   #- { key: M,              mods: Command,                    action: Minimize              }
   #- { key: Q,              mods: Command,                    action: Quit                  }
   #- { key: W,              mods: Command,                    action: Quit                  }
+  #- { key: N,              mods: Command,                    action: CreateNewWindow       }
+  #- { key: F,              mods: Command|Control,            action: ToggleFullscreen      }
+  #- { key: F,              mods: Command, mode: ~Search,     action: SearchForward         }
+  #- { key: B,              mods: Command, mode: ~Search,     action: SearchBackward        }
   #- { key: N,              mods: Command,                    action: CreateNewWindow       }
   #- { key: F,              mods: Command|Control,            action: ToggleFullscreen      }
   #- { key: F,              mods: Command, mode: ~Search,     action: SearchForward         }
