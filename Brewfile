@@ -58,6 +58,7 @@ brew "gnupg"
 brew "krb5"
 brew "libpq", link: true
 brew "nss"
+brew "poppler"
 brew "gdal"
 brew "gh"
 brew "git"
@@ -70,16 +71,17 @@ brew "grpc@1.54"
 brew "htop"
 brew "jq"
 brew "jsonnet-bundler"
+brew "node"
+brew "jupyterlab"
 brew "lazygit"
 brew "mas"
 brew "mkcert"
 brew "neovim"
 brew "nghttp2"
 brew "nginx"
-brew "node"
 brew "openconnect"
 brew "php"
-brew "postgis"
+brew "postgis", link: false
 brew "postgresql@15"
 brew "tcl-tk"
 brew "python@3.8"
@@ -89,7 +91,6 @@ brew "rsync"
 brew "ruby"
 brew "rust"
 brew "ssh-copy-id"
-brew "starship"
 brew "stow"
 brew "subversion"
 brew "tldr"
@@ -132,7 +133,6 @@ cask "miniconda"
 cask "monitorcontrol"
 cask "notion"
 cask "opera"
-cask "paw"
 cask "raindropio"
 cask "rapidapi"
 cask "rectangle"
@@ -150,17 +150,35 @@ cask "transmit"
 cask "utm"
 cask "visual-studio-code"
 cask "vlc"
+cask "warp"
 cask "whatsapp"
+cask "x2goclient"
+cask "xquartz"
 mas "1Password for Safari", id: 1569813296
+mas "Amphetamine", id: 937984704
+mas "Bear", id: 1091189122
+mas "Connective Plugin", id: 1428740565
+mas "F5Access", id: 1243219105
 mas "GarageBand", id: 682658836
+mas "Hidden Folks+", id: 1584550483
 mas "iMovie", id: 408981434
 mas "Keynote", id: 409183694
-mas "Kindle", id: 405399194
+mas "Kindle", id: 302584613
+mas "Kindle Classic", id: 405399194
+mas "Microsoft Excel", id: 462058435
+mas "Microsoft Outlook", id: 985367838
+mas "Microsoft Remote Desktop", id: 1295203466
+mas "Microsoft Word", id: 462054704
+mas "Mini Motorways", id: 1456188526
+mas "NBA 2K23 Arcade Edition", id: 1591156004
+mas "Notability", id: 360593530
 mas "Numbers", id: 409203825
+mas "OneDrive", id: 823766827
 mas "Pages", id: 409201541
 mas "Silicio", id: 933627574
-mas "TestFlight", id: 899247664
+mas "Tetris Beat", id: 1536485727
 mas "Things", id: 904280696
+mas "Toggl Track", id: 1291898086
 vscode "be5invis.toml"
 vscode "bradlc.vscode-tailwindcss"
 vscode "Catppuccin.catppuccin-vsc"
@@ -175,6 +193,7 @@ vscode "Digimezzo.jetbrains-rider-new-ui-theme"
 vscode "dsznajder.es7-react-js-snippets"
 vscode "eamodio.gitlens"
 vscode "EditorConfig.EditorConfig"
+vscode "eeyore.yapf"
 vscode "esbenp.prettier-vscode"
 vscode "firsttris.vscode-jest-runner"
 vscode "GitHub.codespaces"
@@ -199,6 +218,7 @@ vscode "ms-azuretools.vscode-docker"
 vscode "ms-pyright.pyright"
 vscode "ms-python.black-formatter"
 vscode "ms-python.isort"
+vscode "ms-python.pylint"
 vscode "ms-python.python"
 vscode "ms-python.vscode-pylance"
 vscode "ms-toolsai.jupyter"
@@ -227,6 +247,7 @@ vscode "Orta.vscode-jest"
 vscode "phoenixframework.phoenix"
 vscode "pmneo.tsimporter"
 vscode "Qvist.jetbrains-new-ui-dark-theme"
+vscode "rangav.vscode-thunder-client"
 vscode "rbbit.typescript-hero"
 vscode "redhat.vscode-xml"
 vscode "redhat.vscode-yaml"
