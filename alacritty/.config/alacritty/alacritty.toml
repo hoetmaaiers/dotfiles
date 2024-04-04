@@ -1,0 +1,52 @@
+# Configuration for Alacritty, the GPU enhanced terminal emulator.
+
+import = [
+    "/Users/robin/.config/alacritty/themes/themes/github_light.toml",
+    # "/Users/robin/.config/alacritty/themes/themes/github_dark.toml",
+]
+
+[cursor.style]
+blinking = "On"
+shape = "Underline"
+
+# Any items in the `env` entry below will be added as
+# environment variables. Some entries may override variables
+# set by alacritty itself.
+[env]
+TERM = "alacritty"
+
+[font]
+builtin_box_drawing = true
+size = 12.0
+
+[font.bold]
+family = "JetBrains Mono"
+style = "Bold"
+
+[font.glyph_offset]
+x = 0
+y = 0
+
+[font.italic]
+family = "JetBrains Mono"
+style = "Italic"
+
+[font.normal]
+family = "JetBrains Mono"
+style = "Regular"
+
+[font.offset]
+x = 0
+y = 0
+
+[scrolling]
+history = 10000
+multiplier = 3
+
+[window]
+decorations = "buttonless"
+opacity = 1
+
+[window.padding]
+x = 10
+y = 10
