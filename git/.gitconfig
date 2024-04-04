@@ -1,8 +1,9 @@
 [user]
-	name = hoetmaaiers
-	email = robin.houdmeyers@gmail.com
+	name = Robin Houdmeyers
+	email = robin.houdmeyers@vito.be
 [core]
 	editor = vim
+	symlinks = True
 [color]
 	ui = true
 	diff = auto
