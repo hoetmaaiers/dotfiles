@@ -17,25 +17,16 @@ TERM = "alacritty"
 
 [font]
 builtin_box_drawing = true
-size = 12.0
+size = 13.0
 
-[font.bold]
-family = "JetBrains Mono"
-style = "Bold"
+[font.normal]
+family = "MesloLGS NF"
 
-[font.glyph_offset]
+[font.offset]
 x = 0
 y = 0
 
-[font.italic]
-family = "JetBrains Mono"
-style = "Italic"
-
-[font.normal]
-family = "JetBrains Mono"
-style = "Regular"
-
-[font.offset]
+[font.glyph_offset]
 x = 0
 y = 0
 
