@@ -1,0 +1,5 @@
+# config file content reference:
+# https://github.com/lsd-rs/lsd?tab=readme-ov-file#config-file-content
+
+color:
+    when: never
