@@ -1,16 +1,2 @@
-require "core"
-require "keymaps"
-require "lazy-config"
-require "options"
-
-
-require "alpha-config"
-require "nvim-tree-config"
--- require "hop-config"
-require "comment-config"
-require "lualine-config"
-require "bufferline-config"
-require "telescope"
-require "treesitter-config"
--- require "lsp-config"
-require "whichkey"
+-- bootstrap lazy.nvim, LazyVim and your plugins
+require("config.lazy")
