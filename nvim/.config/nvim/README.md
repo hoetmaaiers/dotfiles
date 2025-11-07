@@ -1,1 +1,4 @@
-Inspiration from: https://medium.com/@shaikzahid0713/the-neovim-series-32163eb1f5d0
+# 💤 LazyVim
+
+A starter template for [LazyVim](https://github.com/LazyVim/LazyVim).
+Refer to the [documentation](https://lazyvim.github.io/installation) to get started.
