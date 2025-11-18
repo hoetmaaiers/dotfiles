@@ -4,18 +4,21 @@ end
 
 #########################################################
 # alias & abbr
-alias gb='git branch'
-alias gl='git pull'
-alias gp='git push'
+# alias gb='git branch'
+# alias gl='git pull'
+# alias gp='git push'
 
-abbr --add gcm git commit -m
-abbr --add gst git status
-abbr --add gss git status -s
-
+# abbr --add gcm git commit -m
+# abbr --add gst git status
+# abbr --add gss git status -s
+abbr --add lla ls -la
 
 # don't show any greetings
 set -g fish_greeting ""
 set -g fish_greeting "One line at a time."
 
-
 zoxide init fish | source
+
+if test -d /opt/homebrew
+    /opt/homebrew/bin/brew shellenv | source
+end
