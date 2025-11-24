@@ -22,3 +22,14 @@ zoxide init fish | source
 if test -d /opt/homebrew
     /opt/homebrew/bin/brew shellenv | source
 end
+
+if test -f /usr/share/lmod/lmod/init/profile.fish
+    source /usr/share/lmod/lmod/init/profile.fish
+end
+
+if type -q pixi
+    pixi completion --shell fish | source
+end
+
+module load pixi
+
