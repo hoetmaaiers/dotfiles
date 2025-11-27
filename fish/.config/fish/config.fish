@@ -33,3 +33,9 @@ end
 
 module load pixi
 
+
+# load shared environment variables
+source ~/.env ^/dev/null 2>/dev/null; or begin
+    # fish-syntax fallback
+    set -x VITO_PASSWORD "value"
+end
