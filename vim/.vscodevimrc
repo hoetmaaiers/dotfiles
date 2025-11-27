@@ -1,0 +1,25 @@
+" Set the leader key
+let mapleader = " "
+
+" Map leader + e to open the Explorer
+nnoremap <leader>e :call VSCodeCall('workbench.view.explorer')<CR>
+
+" Move lines up and down
+nnoremap <C-Down> :m .+1<CR>==
+nnoremap <C-Up> :m .-2<CR>==
+inoremap <C-Down> <Esc>:m .+1<CR>==gi
+inoremap <C-Up> <Esc>:m .-2<CR>==gi
+vnoremap <C-Down> :m '>+1<CR>gv=gv
+vnoremap <C-Up> :m '<-2<CR>gv=gv
+
+
+" Map 'jk' to escape insert mode
+" inoremap jk <Esc>
+
+set scrolloff=5
+
+" Map g+i to open "Go to Implementations"
+nnoremap gi :VSCodeCall editor.action.goToImplementation<CR>
+
+nnoremap <leader>p :VSCodeCall workbench.action.files.openFile<CR>
+
