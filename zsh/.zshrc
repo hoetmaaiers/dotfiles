@@ -138,7 +138,7 @@ export PATH="/Applications/Postgres.app/Contents/Versions/latest/bin:/opt/homebr
 
 eval "$(direnv hook zsh)"
 
-source /Users/robin/.config/op/plugins.sh
+# source /Users/robin/.config/op/plugins.sh
 
 # Created by `pipx` on 2024-02-20 10:58:43
 export PATH="$PATH:/Users/robin/.local/bin"
@@ -157,4 +157,40 @@ else
 fi
 unset __conda_setup
 # <<< conda initialize <<
+
+
+autoload -Uz compinit
+zstyle ':completion:*' menu select
+fpath+=~/.zfunc
+
+
+. "$HOME/.cargo/env"
+export PATH=/Users/robin/.pixi/bin:$PATH
+eval "$(pixi completion --shell zsh)"
+
+
+########################################################################################################################
+# Aliases
+alias ls='lsd'
+alias l='ls -l'
+alias la='ls -a'
+alias lla='ls -la'
+alias lt='ls --tree'
+alias caff='~/.local/bin/caff'
+
+alias gl="git pull --autostash"
+
+fpath+=~/.zfunc; autoload -Uz compinit; compinit
+
+if [ -f ~/.bash_profile ]; then
+    . ~/.bash_profile;
+fi
+
+export VITO_PASSWORD=$(security find-generic-password -a "$USER" -s "VITO_PASSWORD" -w)
+export EDITOR=/opt/homebrew/bin/nvim
+
+# ensure cursor and VIM mode works correct within tmux
+export VI_MODE_SET_CURSOR=true
+
+
 

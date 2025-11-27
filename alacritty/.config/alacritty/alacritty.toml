@@ -1,8 +1,8 @@
 # Configuration for Alacritty, the GPU enhanced terminal emulator.
 
 import = [
-    "/Users/robin/.config/alacritty/themes/themes/github_light.toml",
-    # "/Users/robin/.config/alacritty/themes/themes/github_dark.toml",
+    # "/Users/robin/.config/alacritty/themes/themes/github_light.toml",
+    "/Users/robin/.config/alacritty/themes/themes/github_dark.toml",
 ]
 
 [cursor.style]
@@ -35,9 +35,10 @@ history = 10000
 multiplier = 3
 
 [window]
-decorations = "buttonless"
-opacity = 1
+decorations = "Buttonless"
+opacity = 0.98
 
 [window.padding]
 x = 10
 y = 10
+
