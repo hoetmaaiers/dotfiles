@@ -4,13 +4,6 @@ end
 
 #########################################################
 # alias & abbr
-# alias gb='git branch'
-# alias gl='git pull'
-# alias gp='git push'
-
-# abbr --add gcm git commit -m
-# abbr --add gst git status
-# abbr --add gss git status -s
 abbr --add lla ls -la
 
 # don't show any greetings

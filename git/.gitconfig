@@ -1,6 +1,7 @@
 [user]
 	name = Robin Houdmeyers
 	email = robin.houdmeyers@vito.be
+	signingkey = ssh-ed25519 AAAAC3NzaC1lZDI1NTE5AAAAIJxLjeb/q0rYCoav9hUMsTdyi6kTagAOppbUGTx/U4wb
 [core]
 	editor = vim
 	symlinks = True
@@ -22,3 +23,9 @@
 
 [remote "origin"]
 	prune = true
+[gpg]
+	format = ssh
+[gpg "ssh"]
+	program = /Applications/1Password.app/Contents/MacOS/op-ssh-sign
+[commit]
+	gpgsign = true
