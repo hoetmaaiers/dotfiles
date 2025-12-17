@@ -2,6 +2,8 @@ if status is-interactive
     #########################################################
     # alias & abbr
     abbr --add lla 'ls -la'
+    abbr -a gca 'git commit --amend'
+    abbr -a gcaf 'git commit --amend --no-edit'
 
     # greeting (single line)
     set -g fish_greeting "One line at a time."
@@ -20,10 +22,10 @@ if status is-interactive
     if test -f /usr/share/lmod/lmod/init/profile.fish
         source /usr/share/lmod/lmod/init/profile.fish
 
-        # only run module if it exists
-        if type -q module
-            module load pixi
-        end
+        # # only run module if it exists
+        # if type -q module
+        #     module load pixi
+        # end
     end
 
     # pixi completions (if pixi is installed)
@@ -39,4 +41,7 @@ if status is-interactive
         # fish-syntax fallback
         set -x VITO_PASSWORD value
     end
+
 end
+
+direnv hook fish | source
