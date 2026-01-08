@@ -5,6 +5,8 @@ if status is-interactive
     abbr -a gca 'git commit --amend'
     abbr -a gcaf 'git commit --amend --no-edit'
 
+    fish_vi_key_bindings
+
     # greeting (single line)
     set -g fish_greeting "One line at a time."
 
