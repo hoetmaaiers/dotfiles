@@ -7,6 +7,10 @@ if status is-interactive
 
     fish_vi_key_bindings
 
+    fish_add_path $HOME/.local/bin
+    fish_add_path $HOME/.pixi/bin
+    fish_add_path $HOME/.cargo/bin
+
     # greeting (single line)
     set -g fish_greeting "One line at a time."
 
