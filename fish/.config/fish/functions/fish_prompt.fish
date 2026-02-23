@@ -5,8 +5,26 @@ function fish_prompt
     set -l brwhite (set_color brwhite)
 
     # Initialize color variables with defaults if not set
-    set -l cwd_color (set -q fish_color_cwd; and echo $fish_color_cwd; or echo brblue)
-    set -l error_color (set -q fish_color_error; and echo $fish_color_error; or echo red)
+    # Extract only the color name (first word) to handle cases where --theme flags are included
+    set -l cwd_color brblue
+    if set -q fish_color_cwd; and test -n "$fish_color_cwd"
+        set -l color_val (string trim (echo $fish_color_cwd | string split ' ')[1])
+        if test -n "$color_val"
+            set cwd_color $color_val
+        end
+    end
+
+    set -l error_color red
+    if set -q fish_color_error; and test -n "$fish_color_error"
+        set -l color_val (string trim (echo $fish_color_error | string split ' ')[1])
+        if test -n "$color_val"
+            set error_color $color_val
+        end
+    end
+
+    # Ensure colors are never empty
+    test -n "$cwd_color"; or set cwd_color brblue
+    test -n "$error_color"; or set error_color red
 
     # --- 1. Top Line: Environment & Path ---
 
@@ -20,7 +38,7 @@ function fish_prompt
     # Hostname / Environment Logic
     # Using the built-in $hostname variable is faster than calling the command
     switch $hostname
-        case 's12-hpc*' 'develop.marvin.vito.local' 'login.marvin.vito.local'
+        case 's12-hpc*' 's12-develop' 's12-login'
             echo -n (set_color bryellow)'⚡ '
         case '*'
             echo -n (set_color brgreen)'🏡 '
@@ -56,5 +74,6 @@ function fish_prompt
 
     # Final prompt line
     echo ""
+    test -n "$status_color"; or set status_color (set_color brgreen)
     echo -n -s $status_color $suffix ' ' $normal
 end
