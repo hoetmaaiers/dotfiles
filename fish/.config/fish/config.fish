@@ -28,10 +28,10 @@ if status is-interactive
     if test -f /usr/share/lmod/lmod/init/profile.fish
         source /usr/share/lmod/lmod/init/profile.fish
 
-        # # only run module if it exists
-        # if type -q module
-        #     module load pixi
-        # end
+        # only run module if it exists
+        if type -q module
+            module load pixi
+        end
     end
 
     # pixi completions (if pixi is installed)
@@ -39,13 +39,10 @@ if status is-interactive
         pixi completion --shell fish | source
     end
 
-    # load shared environment variables (if file exists)
-    if test -f ~/.env
-        # silence stdout/stderr from sourcing
-        source ~/.env >/dev/null 2>/dev/null
-    else
-        # fish-syntax fallback
-        set -x VITO_PASSWORD value
+    # load VITO_* from .bash_profile (run bash and capture exports)
+    if test -f ~/.bash_profile
+        set -gx VITO_USERNAME (bash -lc 'source ~/.bash_profile 2>/dev/null; echo "$VITO_USERNAME"')
+        set -gx VITO_PASSWORD (bash -lc 'source ~/.bash_profile 2>/dev/null; echo "$VITO_PASSWORD"')
     end
 
 end
