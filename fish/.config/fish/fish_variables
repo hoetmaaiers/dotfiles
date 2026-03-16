@@ -6,4 +6,7 @@ SETUVAR _fisher_jorgebucaran_2F_fisher_files:\x7e/\x2econfig/fish/functions/fish
 SETUVAR _fisher_plugins:jorgebucaran/fisher\x1ejhillyerd/plugin\x2dgit
 SETUVAR _fisher_upgraded_to_4_4:\x1d
 SETUVAR fish_key_bindings:fish_vi_key_bindings
+SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3dblue
+SETUVAR fish_pager_color_selected_completion:white
+SETUVAR fish_pager_color_selected_description:white
 SETUVAR fish_user_paths:/home/houdmeyr/\x2ecargo/bin\x1e/home/houdmeyr/\x2epixi/bin\x1e/home/houdmeyr/\x2elocal/bin\x1e/home/houdmeyr/bin
