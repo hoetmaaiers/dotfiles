@@ -28,9 +28,11 @@ if status is-interactive
     if test -f /usr/share/lmod/lmod/init/profile.fish
         source /usr/share/lmod/lmod/init/profile.fish
 
-        # only run module if it exists
         if type -q module
-            module load pixi
+            set -l user_modulepath /home/houdmeyr/dotfiles/lmod/modules
+            if test -d $user_modulepath
+                module use $user_modulepath
+            end
         end
     end
 
