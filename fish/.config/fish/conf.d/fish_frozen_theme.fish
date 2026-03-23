@@ -8,6 +8,12 @@
 # for appropriate commands to add to ~/.config/fish/config.fish instead.
 # See also the release notes for fish 4.3.0 (run `help relnotes`).
 
-set --global fish_pager_color_selected_background --background=blue
-set --global fish_pager_color_selected_completion white
-set --global fish_pager_color_selected_description white
+# set --global fish_pager_color_selected_background --background=blue
+# set --global fish_pager_color_selected_completion white
+# set --global fish_pager_color_selected_description white
+
+set --global fish_pager_color_selected_background --background=cyan
+set --global fish_pager_color_selected_completion normal --bold
+set --global fish_pager_color_selected_description normal
+set --global fish_pager_color_prefix brcyan
+set --global fish_pager_color_selected_prefix brcyan --bold
