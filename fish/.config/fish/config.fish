@@ -41,6 +41,16 @@ if status is-interactive
         pixi completion --shell fish | source
     end
 
+    # yazi
+    function y
+        set tmp (mktemp -t "yazi-cwd.XXXXXX")
+        command yazi $argv --cwd-file="$tmp"
+        if read -z cwd <"$tmp"; and [ "$cwd" != "$PWD" ]; and test -d "$cwd"
+            builtin cd -- "$cwd"
+        end
+        rm -f -- "$tmp"
+    end
+
     # load VITO_* from .bash_profile (run bash and capture exports)
     if test -f ~/.bash_profile
         set -gx VITO_USERNAME (bash -lc 'source ~/.bash_profile 2>/dev/null; echo "$VITO_USERNAME"')
