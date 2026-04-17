@@ -51,12 +51,22 @@ if status is-interactive
         rm -f -- "$tmp"
     end
 
-    # load VITO_* from .bash_profile (run bash and capture exports)
-    if test -f ~/.bash_profile
-        set -gx VITO_USERNAME (bash -lc 'source ~/.bash_profile 2>/dev/null; echo "$VITO_USERNAME"')
-        set -gx VITO_PASSWORD (bash -lc 'source ~/.bash_profile 2>/dev/null; echo "$VITO_PASSWORD"')
+    # static VITO username
+    set -gx VITO_USERNAME "houdmeyr"
+
+    # load VITO_PASSWORD from macOS Keychain
+    if type -q security
+        set -l vito_password (security find-generic-password -a "$USER" -s "VITO_PASSWORD" -w 2>/dev/null)
+        if test -n "$vito_password"
+            set -gx VITO_PASSWORD "$vito_password"
+        end
     end
 
 end
 
 direnv hook fish | source
+
+# Added by LM Studio CLI (lms)
+set -gx PATH $PATH /Users/robin/.lmstudio/bin
+# End of LM Studio CLI section
+
