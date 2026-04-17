@@ -52,6 +52,6 @@ windows:
       # synchronize: after
       panes:
         - devserver: yarn dev
-        - zsh
+        - fish
   # - server: bundle exec rails s
   # - logs: tail -f log/development.log
