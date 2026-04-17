@@ -52,6 +52,6 @@ windows:
       # synchronize: after
       panes:
         - nvim: nvim
-        - zsh
+        - fish
   # - server: bundle exec rails s
   # - logs: tail -f log/development.log
