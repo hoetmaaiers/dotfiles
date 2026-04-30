@@ -51,6 +51,10 @@ if status is-interactive
         rm -f -- "$tmp"
     end
 
+    function ngrok
+        env TERM=xterm-256color command ngrok $argv
+    end
+
     # static VITO username
     set -gx VITO_USERNAME "houdmeyr"
 
