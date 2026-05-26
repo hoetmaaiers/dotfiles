@@ -24,15 +24,13 @@ if status is-interactive
         /opt/homebrew/bin/brew shellenv | source
     end
 
-    # Lmod / modules
+    # Lmod / modules (Linux/HPC)
     if test -f /usr/share/lmod/lmod/init/profile.fish
         source /usr/share/lmod/lmod/init/profile.fish
 
-        if type -q module
-            set -l user_modulepath /home/houdmeyr/dotfiles/lmod/modules
-            if test -d $user_modulepath
-                module use $user_modulepath
-            end
+        set -l user_modulepath $HOME/dotfiles/lmod/modules
+        if type -q module; and test -d $user_modulepath
+            module use $user_modulepath
         end
     end
 
@@ -70,7 +68,9 @@ end
 
 direnv hook fish | source
 
-# Added by LM Studio CLI (lms)
-set -gx PATH $PATH /Users/robin/.lmstudio/bin
-# End of LM Studio CLI section
+if test (uname -s) = Darwin
+    if test -d $HOME/.lmstudio/bin
+        fish_add_path $HOME/.lmstudio/bin
+    end
+end
 
