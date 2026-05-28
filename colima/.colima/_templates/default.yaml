@@ -1,0 +1,54 @@
+# Colima default template — applied when creating new profiles.
+# Edit with: colima template
+# Stow: cd ~/dotfiles && stow colima
+
+# M-series baseline: vz + virtiofs for fast filesystem I/O
+cpu: 4
+memory: 8
+disk: 60
+
+# NOTE: cannot change after VM is created
+arch: aarch64
+runtime: docker
+vmType: vz
+mountType: virtiofs
+
+modelRunner: docker
+hostname: colima
+
+kubernetes:
+  enabled: false
+  version: v1.35.0+k3s1
+  k3sArgs:
+    - --disable=traefik
+  port: 0
+
+autoActivate: true
+
+network:
+  address: false
+  mode: shared
+  interface: en0
+  preferredRoute: false
+  dns: null
+  dnsHosts: {}
+  hostAddresses: false
+  gatewayAddress: 192.168.5.2
+
+forwardAgent: false
+docker: {}
+
+portForwarder: ssh
+rosetta: true
+binfmt: true
+nestedVirtualization: false
+mountInotify: true
+cpuType: ""
+provision: null
+
+sshConfig: true
+sshPort: 0
+mounts: []
+diskImage: ""
+rootDisk: 20
+env: {}
