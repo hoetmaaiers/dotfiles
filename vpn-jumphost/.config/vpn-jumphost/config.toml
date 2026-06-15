@@ -1,0 +1,76 @@
+# Example vpn-jumphost configuration -- VITO BYOD VPN
+#
+# Copy this file to ~/.config/vpn-jumphost/config.toml and adjust as
+# needed.  The binary no longer ships compiled-in VPN URL or domain
+# defaults, so at minimum you must set `vpn_url` and `[domains]`.
+#
+# Precedence (highest -> lowest):
+#   CLI flag  >  config file  >  compiled-in default
+#
+# Values that are commented out below match the compiled-in defaults.
+# Uncomment and change them only if you need a non-default value.
+#
+# See spec.md, Config File section, for the full reference.
+
+# -- VPN connection ----------------------------------------------------
+
+# F5 VPN endpoint URL (required -- no compiled-in default).
+vpn_url = "https://byod.vito.be"
+
+# OpenConnect protocol (default: "f5").
+# vpn_protocol = "f5"
+
+# ocproxy SOCKS5 listen port (default: 1080).
+# socks_port = 1080
+
+# TCP keepalive interval (seconds) for ocproxy -k (default: 60).
+# ocproxy_keepalive = 60
+
+# -- Supervisor --------------------------------------------------------
+
+# Seconds between periodic cookie validity checks (default: 300).
+# check_interval = 300
+
+# Never use headless mode for cookie refresh -- always open a visible
+# browser window, even when VPN_USERNAME + VPN_PASSWORD are available
+# (default: false).
+# no_headless = false
+
+# Enable debug-level (verbose) logging (default: false).
+# Same as passing --verbose on the command line.
+# verbose = false
+
+# Serve the PAC file over HTTP on pac_server.bind:port (default: false).
+serve_pac = true
+
+# -- Paths (usually fine as defaults) ----------------------------------
+
+# Path to a Chromium executable.
+# chromium_path = "/usr/bin/chromium"
+
+# -- Routing proxy (defaults: 127.0.0.1:1081) -------------------------
+
+[routing_proxy]
+# bind = "127.0.0.1"
+# port = 1081
+
+# -- PAC HTTP server (defaults: 127.0.0.1:8091) -----------------------
+
+[pac_server]
+# bind = "127.0.0.1"
+# port = 8091
+
+# -- Domain routing (required -- no compiled-in defaults) --------------
+#
+# proxy  -- domains routed through the VPN tunnel.
+# direct -- domains that must always bypass the tunnel.  The VPN portal
+#           itself (byod.vito.be) should be listed here so it stays
+#           reachable even when the tunnel is down.
+
+[domains]
+proxy  = ["vito.be", "vito.local", "int.vito.be", "int.energyville.be"]
+direct = ["byod.vito.be"]
+
+[credentials]
+# username_file = "/run/secrets/vpn_user"
+# password_file = "/run/secrets/vpn_pass"
