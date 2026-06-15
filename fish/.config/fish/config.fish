@@ -53,8 +53,8 @@ if status is-interactive
         env TERM=xterm-256color command ngrok $argv
     end
 
-    # static VITO username
-    set -gx VITO_USERNAME "houdmeyr"
+    set -gx VITO_USERNAME houdmeyr # static VITO username
+    set -gx VITO_EMAIL robin.houdmeyers@vito.be # static VITO email address
 
     # load VITO_PASSWORD from macOS Keychain
     if type -q security
