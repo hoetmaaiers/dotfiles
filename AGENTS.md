@@ -24,7 +24,7 @@ Guidance for AI agents working in this dotfiles repo.
 | `git` | `~/.gitconfig` |
 | `colima` | Template only — see below |
 | `nvim` | LazyVim-based; lua under `.config/nvim/` |
-| `direnv`, `alacritty`, `lsd`, `nix`, `tmux`, `tmuxinator`, `vim`, `atuin` | Standard XDG or home-path configs |
+| `direnv`, `alacritty`, `lsd`, `nix`, `proxychains`, `tmux`, `tmuxinator`, `vim`, `atuin` | Standard XDG or home-path configs |
 | `lmod` | Pixi modulefiles; loaded from fish on Linux HPC |
 
 Use `stow --adopt <pkg>` when a target file already exists and should move into the repo.

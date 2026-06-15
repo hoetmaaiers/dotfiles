@@ -27,6 +27,7 @@ Each package mirrors paths under `$HOME`. Example: `stow direnv` links `direnv/.
 | `lsd` | `~/.config/lsd/config.yml` |
 | `nix` | `~/.config/nix/nix.conf` |
 | `nvim` | `~/.config/nvim/` |
+| `proxychains` | `~/.proxychains/proxychains.conf` |
 | `tmux` | `~/.tmux.conf` |
 | `tmuxinator` | `~/.config/tmuxinator/` |
 | `vim` | `~/.vscodevimrc` |
