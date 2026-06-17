@@ -1,7 +1,10 @@
 if status is-interactive
     #########################################################
     # alias & abbr
-    abbr --add lla 'ls -la'
+    abbr --add ls 'eza'
+    abbr --add lla 'eza -lah'
+    abbr --add ll 'eza -lah'
+    abbr --add lt 'eza --tree'
     abbr -a gca 'git commit --amend'
     abbr -a gcaf 'git commit --amend --no-edit'
 
