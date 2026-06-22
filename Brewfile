@@ -1,19 +1,11 @@
 tap "anomalyco/tap"
-tap "azure/azd"
-tap "buo/cask-upgrade"
-tap "datamindedbe/conveyor-formulas"
-tap "epk/epk"
-tap "felixkratz/formulae"
-tap "karinushka/paneru"
-tap "manojkarthick/tap"
-tap "nikitabobko/tap"
-tap "teamookla/speedtest"
+tap "azure/azd", trusted: true
+tap "epk/epk", trusted: true
+tap "teamookla/speedtest", trusted: true
 # Run your GitHub Actions locally
 brew "act"
-# TIFF library and utilities
-brew "libtiff"
-# New file format for still image compression
-brew "jpeg-xl"
+# All-in-one AI-Powered CLI Chat & Copilot
+brew "aichat"
 # Codec library for encoding and decoding AV1 video streams
 brew "aom"
 # Next generation open source RPC library and framework
@@ -24,6 +16,8 @@ brew "llvm"
 brew "apache-arrow"
 # Extendable version manager with support for Ruby, Node.js, Erlang & more
 brew "asdf"
+# Core application library for C
+brew "glib"
 # Shell extension to jump to frequently used directories
 brew "autojump"
 # Microsoft Azure CLI 2.0
@@ -42,10 +36,14 @@ brew "black"
 brew "boost"
 # XML-based font configuration API for X Windows
 brew "fontconfig"
-# Core application library for C
-brew "glib"
 # Cross-platform make
 brew "cmake"
+# Linux virtual machines
+brew "lima"
+# Container runtimes on MacOS (and Linux) with minimal setup
+brew "colima", restart_service: :changed
+# Zsh completion for conda
+brew "conda-zsh-completion"
 # GNU File, Shell, and Text utilities
 brew "coreutils"
 # Cryptographic recipes and primitives for Python
@@ -56,6 +54,10 @@ brew "curl"
 brew "dbmate"
 # Load/unload environment variables based on $PWD
 brew "direnv"
+# Pack, ship and run any application as a lightweight container
+brew "docker"
+# Isolated development environments using Docker
+brew "docker-compose"
 # GNU compiler collection
 brew "gcc"
 # Package for scientific computing with Python
@@ -64,6 +66,8 @@ brew "numpy"
 brew "pygit2"
 # Git for data science projects
 brew "dvc"
+# TIFF library and utilities
+brew "libtiff"
 # Programming language for highly scalable real-time systems
 brew "erlang"
 # Functional metaprogramming aware language built on Erlang VM
@@ -72,24 +76,24 @@ brew "elixir"
 brew "exercism"
 # Perl lib for reading and writing EXIF metadata
 brew "exiftool"
+# Modern, maintained replacement for ls
+brew "eza"
 # Simple, fast and user-friendly alternative to find
 brew "fd"
 # Play, record, convert, and stream select audio and video codecs
 brew "ffmpeg"
 # Library to load and enumerate PKCS#11 modules
 brew "p11-kit"
-# Validating, recursive, caching DNS resolver
-brew "unbound"
 # GNU Transport Layer Security (TLS) Library
 brew "gnutls"
 # OpenType text shaping engine
 brew "harfbuzz"
 # Image processing and image analysis library
 brew "leptonica"
-# C/C++ and Java libraries for Unicode and globalization
-brew "icu4c@77"
 # Subtitle renderer for the ASS/SSA subtitle format
 brew "libass"
+# Validating, recursive, caching DNS resolver
+brew "unbound"
 # Light HTTP/1.1 server library
 brew "libmicrohttpd"
 # Reliable Internet Stream Transport (RIST)
@@ -102,8 +106,6 @@ brew "ffmpeg@4"
 brew "fish"
 # Command-line tools for fly.io services
 brew "flyctl"
-# X11 implementation of the Remote Desktop Protocol (RDP)
-brew "freerdp"
 # Libraries to talk to Microsoft SQL Server and Sybase databases
 brew "freetds"
 # Monitor a directory for changes and run a shell command
@@ -112,14 +114,16 @@ brew "fswatch"
 brew "fzf"
 # GNU awk utility
 brew "gawk"
+# New file format for still image compression
+brew "jpeg-xl"
 # Library for encoding and decoding .avif files
 brew "libavif"
 # GitHub command-line tool
 brew "gh"
 # Distributed revision control system
 brew "git"
-# Extensions to follow Vincent Driessen's branching model
-brew "git-flow"
+# Quickly rewrite git repository history
+brew "git-filter-repo"
 # Git extension for versioning large files
 brew "git-lfs"
 # Git extension to generate reports for standup meetings
@@ -158,6 +162,8 @@ brew "jupyterlab"
 brew "just"
 # Little helper to run CNCF's k3s in Docker
 brew "k3d"
+# Run local Kubernetes cluster in Docker
+brew "kind"
 # Network authentication protocol
 brew "krb5"
 # Kubernetes command-line interface
@@ -166,8 +172,6 @@ brew "kubernetes-cli"
 brew "lazygit"
 # Postgres C API library
 brew "libpq", link: true
-# Linux virtual machines
-brew "lima"
 # Mac App Store command-line interface
 brew "mas"
 # Simple tool to make locally trusted development certificates
@@ -184,12 +188,12 @@ brew "neovim"
 brew "nghttp2"
 # HTTP(S) server and reverse proxy, and IMAP/POP3 proxy server
 brew "nginx"
+# Port scanning utility for large networks
+brew "nmap"
 # Libraries for security-enabled client and server applications
 brew "nss"
-# Search tool like grep and The Silver Searcher
-brew "ripgrep"
-# AI coding agent, built for the terminal
-brew "opencode"
+# User-level SOCKS and port forwarding proxy
+brew "ocproxy"
 # Open client for Cisco AnyConnect VPN
 brew "openconnect"
 # Development kit for the Java programming language
@@ -210,24 +214,32 @@ brew "podman-compose"
 brew "poppler"
 # Framework for managing multi-language pre-commit hooks
 brew "pre-commit"
+# Hook preloader
+brew "proxychains-ng"
+# Implementation of Telnet and SSH
+brew "putty"
 # Python version management
 brew "pyenv"
 # Python Language Server for the Language Server Protocol
 brew "python-lsp-server"
 # Interpreted, interactive, object-oriented programming language
 brew "python@3.10"
-# Interpreted, interactive, object-oriented programming language
-brew "python@3.9"
 # Generic machine emulator and virtualizer
 brew "qemu"
 # Cross-platform application and UI framework
 brew "qt"
 # SVG rendering tool and library
 brew "resvg"
+# Search tool like grep and The Silver Searcher
+brew "ripgrep"
 # Utility that provides fast incremental file transfer
 brew "rsync"
+# Powerful, clean, object-oriented scripting language
+brew "ruby"
 # 7-Zip is a file archiver with a high compression ratio
 brew "sevenzip"
+# Static analysis and lint tool, for (ba)sh scripts
+brew "shellcheck"
 # Add a public key to a remote machine's authorized_keys file
 brew "ssh-copy-id"
 # Cross-shell prompt for astronauts
@@ -262,20 +274,18 @@ brew "yarn"
 brew "yazi"
 # Shell extension to navigate your filesystem faster
 brew "zoxide"
+# UNIX shell (command interpreter)
+brew "zsh"
+# Zsh port of Fish shell's history search
+brew "zsh-history-substring-search"
 # Azure Developer CLI
 brew "azure/azd/azd"
-# Conveyor command line interface
-brew "datamindedbe/conveyor-formulas/conveyor"
-# Apache Parquet command-line tools and utilities
-brew "manojkarthick/tap/pqrs"
 # Ookla Speedtest
 brew "teamookla/speedtest/speedtest"
 # Password manager that keeps all passwords secure behind one password
 cask "1password"
 # Collection of apps and services for photography, design, video, web, and UX
 cask "adobe-creative-cloud"
-# AeroSpace is an i3-like tiling window manager for macOS
-cask "nikitabobko/tap/aerospace"
 # Application launcher and productivity software
 cask "alfred"
 # Enable Windows-like alt-tab
@@ -290,6 +300,8 @@ cask "autodesk-fusion"
 cask "balenaetcher"
 # E-books management software
 cask "calibre"
+# Brings the power of Copilot coding agent directly to your terminal
+cask "copilot-cli"
 # Write, edit, and chat about your code with AI
 cask "cursor"
 # Disk space visualiser
@@ -333,26 +345,30 @@ cask "karabiner-elements"
 cask "kitty"
 # Software for Logitech devices
 cask "logi-options+"
+# Adaptive brightness for external displays
+cask "lunar"
 # Clipboard manager
 cask "maccy"
 # Minimal installer for conda
 cask "miniconda"
 # Tool to control external monitor brightness & volume
 cask "monitorcontrol"
+# Reverse proxy, secure introspectable tunnels to localhost
+cask "ngrok"
 # Knowledge base that works on top of a local folder of plain text Markdown files
 cask "obsidian"
 # AI coding agent desktop client
 cask "opencode-desktop"
 # Web browser
 cask "opera"
-# Replacement for Docker Desktop
-cask "orbstack"
 # Browse, manage, inspect containers and images
 cask "podman-desktop"
 # Translation editor
 cask "poedit"
 # Collaboration platform for API development
 cask "postman"
+# VPN client
+cask "privadovpn"
 # IDE for professional Python development
 cask "pycharm"
 # Geographic Information System
@@ -365,8 +381,6 @@ cask "rapidapi"
 cask "raycast"
 # Move and resize windows using keyboard shortcuts or snap areas
 cask "rectangle"
-# Tool for sending personal documents to Kindles from Macs
-cask "send-to-kindle"
 # 3D modeling software used to create and manipulate 3D models
 cask "sketchup"
 # Team communication and collaboration software
@@ -411,10 +425,9 @@ mas "Bear", id: 1091189122
 mas "Connective Plugin", id: 1428740565
 mas "F5Access", id: 1243219105
 mas "GarageBand", id: 682658836
-mas "iMovie", id: 408981434
 mas "keymapp", id: 6472865291
-mas "Keynote", id: 409183694
 mas "Keynote", id: 361285480
+mas "Keynote", id: 409183694
 mas "Kindle", id: 302584613
 mas "Kindle Classic", id: 405399194
 mas "Microsoft Excel", id: 462058435
@@ -432,9 +445,7 @@ mas "Pages", id: 409201541
 mas "Photomator", id: 1444636541
 mas "Pixelmator Pro", id: 6746662575
 mas "Silicio", id: 933627574
-mas "Tacx Training", id: 892366151
 mas "TaskForge", id: 6744716215
-mas "Toggl Track", id: 1291898086
 mas "Web eID", id: 1576665083
 mas "Windows App", id: 1295203466
 mas "WireGuard", id: 1451685025
@@ -458,7 +469,6 @@ vscode "editorconfig.editorconfig"
 vscode "esbenp.prettier-vscode"
 vscode "firsttris.vscode-jest-runner"
 vscode "foam.foam-vscode"
-vscode "github.copilot-chat"
 vscode "github.github-vscode-theme"
 vscode "github.remotehub"
 vscode "github.vscode-github-actions"
@@ -471,6 +481,7 @@ vscode "lextudio.restructuredtext"
 vscode "loiane.ts-extension-pack"
 vscode "maarti.jenkins-doc"
 vscode "marp-team.marp-vscode"
+vscode "mateocerquetella.xcode-12-theme"
 vscode "mikestead.dotenv"
 vscode "mrmlnc.vscode-json5"
 vscode "ms-azure-load-testing.microsoft-testing"
@@ -516,6 +527,7 @@ vscode "ms-vscode.remote-server"
 vscode "ms-vscode.vscode-node-azure-pack"
 vscode "ms-vscode.vscode-typescript-next"
 vscode "ms-vsliveshare.vsliveshare"
+vscode "ms-windows-ai-studio.windows-ai-studio"
 vscode "msaraiva.surface"
 vscode "narasimapandiyan.jetbrainsmono"
 vscode "naren.solarized-n"
@@ -548,12 +560,18 @@ cargo "cargo-license"
 cargo "cargo-vcpkg"
 cargo "create-tauri-app"
 cargo "du-dust"
+cargo "eza"
 cargo "fd-find"
 cargo "gitui"
 cargo "just"
+cargo "launchdeck"
 cargo "lsd"
 cargo "ripgrep"
 cargo "sd"
 cargo "serie"
 cargo "skim"
 cargo "turm"
+cargo "zapp"
+npm "@openai/codex"
+npm "@pnp/cli-microsoft365"
+npm "opencode-ai"
