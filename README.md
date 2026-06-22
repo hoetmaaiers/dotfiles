@@ -13,6 +13,15 @@ stow <package>    # e.g. stow fish
 
 Each package mirrors paths under `$HOME`. Example: `stow direnv` links `direnv/.config/direnv/direnv.toml` → `~/.config/direnv/direnv.toml`.
 
+On macOS, install Homebrew dependencies first and then run the macOS setup helper:
+
+```bash
+brew bundle
+./setup/macos.sh
+```
+
+`setup/macos.sh` creates `~/.docker/cli-plugins/` and links Homebrew's `docker-compose` binary into Docker's CLI plugin path as `docker-compose`, so `docker compose` can find the Compose plugin.
+
 ### Packages
 
 | Package | Main targets |
@@ -39,6 +48,12 @@ If a target file already exists, adopt it into the repo first:
 ```bash
 stow --adopt colima
 ```
+
+### Helper Scripts
+
+The `setup/` directory is not a stow package. It contains host setup scripts for machine-level steps that do not map cleanly to symlinked dotfiles.
+
+- `setup/macos.sh`: macOS post-Homebrew setup. Requires `brew` and the `docker-compose` formula from `Brewfile`; links the Compose plugin into `~/.docker/cli-plugins/docker-compose`.
 
 ## Colima
 

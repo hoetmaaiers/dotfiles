@@ -4,7 +4,7 @@ Guidance for AI agents working in this dotfiles repo.
 
 ## Repo layout
 
-- Each top-level directory (except dotfiles like `Brewfile`, `README.md`) is a **stow package**.
+- Each top-level directory is a **stow package**, except dotfiles like `Brewfile` and `README.md`, and helper directories such as `setup/`.
 - Package trees mirror `$HOME` paths. Stow creates symlinks from `~/dotfiles/<pkg>/...` to `~/...`.
 - Link with: `cd ~/dotfiles && stow <package>`.
 
@@ -28,6 +28,12 @@ Guidance for AI agents working in this dotfiles repo.
 | `lmod` | Pixi modulefiles; loaded from fish on Linux HPC |
 
 Use `stow --adopt <pkg>` when a target file already exists and should move into the repo.
+
+## Setup scripts
+
+`setup/` is not a stow package. It contains host setup helpers for machine-level changes that should not be represented as home-directory symlinks.
+
+- `setup/macos.sh`: macOS post-Homebrew setup. It creates `~/.docker/cli-plugins/` and symlinks Homebrew's `docker-compose` binary from `$(brew --prefix)/opt/docker-compose/bin/docker-compose` to `~/.docker/cli-plugins/docker-compose`, enabling Docker CLI Compose plugin discovery.
 
 ## Colima
 
