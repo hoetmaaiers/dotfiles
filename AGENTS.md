@@ -20,7 +20,7 @@ Guidance for AI agents working in this dotfiles repo.
 
 | Package | Notes |
 |---------|-------|
-| `fish` | Primary shell; includes git abbrs, direnv hook, platform paths |
+| `fish` | Primary shell; includes git abbrs, direnv hook, platform paths, `ssh-cluster` for HPC |
 | `git` | `~/.gitconfig` |
 | `colima` | Template only — see below |
 | `nvim` | LazyVim-based; lua under `.config/nvim/` |
@@ -52,6 +52,25 @@ colima stop && colima delete && colima start
 ```
 
 New profiles copy from `_templates/default.yaml` automatically.
+
+## Fish / VITO credentials
+
+`VITO_USERNAME` and `VITO_EMAIL` are set in `fish/.config/fish/config.fish`. **`VITO_PASSWORD` is never stored on the cluster.**
+
+| Host | How `VITO_PASSWORD` is set |
+|------|----------------------------|
+| macOS | Keychain item `VITO_PASSWORD` for `$USER`, loaded at fish startup via `security find-generic-password` |
+| HPC / cluster | Injected per SSH session from the Mac — use `ssh-cluster` (abbr `sshc`), not plain `ssh` |
+
+`ssh-cluster` (`fish/.config/fish/functions/ssh-cluster.fish`) reads Keychain locally and runs `ssh -t` with `export VITO_PASSWORD=…; exec -l $SHELL`. Completions wrap `ssh` (`completions/ssh-cluster.fish`).
+
+**Prerequisites (macOS):** store the password in Keychain once:
+
+```bash
+security add-generic-password -a "$USER" -s "VITO_PASSWORD" -w
+```
+
+**Limitations:** password exists only for that interactive remote session; plain `ssh`, VS Code Remote-SSH, and `sbatch` jobs do not get it automatically.
 
 ## Common tasks
 

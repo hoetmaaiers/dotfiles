@@ -77,3 +77,23 @@ colima start
 ```
 
 Do not commit runtime state under `~/.colima/` (`_lima/`, sockets, `daemon/`, etc.).
+
+## Fish
+
+### HPC: `ssh-cluster`
+
+`VITO_PASSWORD` is not stored on the SLURM cluster. On macOS it lives in Keychain; for cluster sessions, inject it per login:
+
+```fish
+ssh-cluster mycluster    # or: sshc mycluster
+```
+
+Same flags and host completion as `ssh`. Reads Keychain item `VITO_PASSWORD` for `$USER`, exports it on the remote shell for that session only.
+
+Store the password in Keychain once:
+
+```bash
+security add-generic-password -a "$USER" -s "VITO_PASSWORD" -w
+```
+
+Use plain `ssh` when you do not need `VITO_PASSWORD` on the remote host. Batch jobs (`sbatch`) and VS Code Remote-SSH do not use `ssh-cluster` automatically.
