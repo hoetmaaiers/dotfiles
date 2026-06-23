@@ -59,12 +59,22 @@ if status is-interactive
     set -gx VITO_USERNAME houdmeyr # static VITO username
     set -gx VITO_EMAIL robin.houdmeyers@vito.be # static VITO email address
 
-    # load VITO_PASSWORD from macOS Keychain
-    if type -q security
-        set -l vito_password (security find-generic-password -a "$USER" -s "VITO_PASSWORD" -w 2>/dev/null)
-        if test -n "$vito_password"
-            set -gx VITO_PASSWORD "$vito_password"
-        end
+    # load VITO_PASSWORD: Keychain on macOS, ~/.bash_profile on cluster
+    switch (uname -s)
+        case Darwin
+            if type -q security
+                set -l vito_password (security find-generic-password -a "$USER" -s "VITO_PASSWORD" -w 2>/dev/null)
+                if test -n "$vito_password"
+                    set -gx VITO_PASSWORD "$vito_password"
+                end
+            end
+        case Linux
+            if test -f $HOME/.bash_profile
+                set -l vito_password (bash -lc 'printf %s "$VITO_PASSWORD"' 2>/dev/null)
+                if test -n "$vito_password"
+                    set -gx VITO_PASSWORD "$vito_password"
+                end
+            end
     end
 
 end
