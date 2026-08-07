@@ -32,6 +32,7 @@ brew bundle
 | `direnv` | `~/.config/direnv/` |
 | `fish` | `~/.config/fish/` |
 | `git` | `~/.gitconfig` |
+| `herdr` | `~/.config/herdr/config.toml` |
 | `lmod` | modulefiles under `~/dotfiles/lmod/modules` (used from fish) |
 | `lsd` | `~/.config/lsd/config.yml` |
 | `nix` | `~/.config/nix/nix.conf` |
