@@ -26,7 +26,6 @@ brew bundle
 
 | Package | Main targets |
 |---------|--------------|
-| `alacritty` | `~/.config/alacritty/` |
 | `atuin` | `~/config.toml` |
 | `colima` | `~/.colima/_templates/default.yaml` |
 | `direnv` | `~/.config/direnv/` |
