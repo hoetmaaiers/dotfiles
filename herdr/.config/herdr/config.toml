@@ -127,6 +127,13 @@
 # width = "80%"
 # height = "80%"
 
+[[keys.command]]
+key = "prefix+m"
+type = "popup"
+command = "/Users/robin/dotfiles/herdr/.config/herdr/scripts/marvin-masters"
+width = "80%"
+height = "80%"
+
 # Legacy indexed shortcut config is still parsed for compatibility.
 # Prefer switch_tab, switch_workspace, and focus_agent for new configs.
 # [keys.indexed]

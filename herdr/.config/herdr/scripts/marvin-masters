@@ -1,0 +1,227 @@
+#!/usr/bin/env bash
+set -uo pipefail
+
+SSH_CONFIG="${SSH_CONFIG:-$HOME/.ssh/config}"
+CONTROL_PERSIST="${MARVIN_MASTER_PERSIST:-10m}"
+
+usage() {
+  cat <<'USAGE'
+Usage:
+  marvin-masters                  interactive fzf manager
+  marvin-masters status
+  marvin-masters start <host>
+  marvin-masters stop <host>
+  marvin-masters restart <host>
+  marvin-masters shell <host>
+  marvin-masters clean-stale [host]
+
+Environment:
+  MARVIN_MASTER_PERSIST=10m       ControlPersist value for started masters
+USAGE
+}
+
+marvin_hosts() {
+  awk '
+    /^Host[[:space:]]/ {
+      for (i = 2; i <= NF; i++) {
+        if ($i ~ /^marvin-cluster/ && $i !~ /\*/) print $i
+      }
+    }
+  ' "$SSH_CONFIG" | sort -u
+}
+
+control_path() {
+  ssh -G "$1" 2>/dev/null | awk '$1 == "controlpath" {
+    sub(/^controlpath[[:space:]]+/, "")
+    print
+    exit
+  }'
+}
+
+master_status() {
+  local host="$1"
+  local output path
+
+  output="$(ssh -O check "$host" 2>&1)"
+  case "$?" in
+    0)
+      printf 'running %s\n' "$(printf '%s\n' "$output" | sed -n 's/.*pid=\([0-9][0-9]*\).*/pid=\1/p')"
+      ;;
+    *)
+      path="$(control_path "$host")"
+      if [[ -n "$path" && -e "$path" ]]; then
+        printf 'stale socket\n'
+      else
+        printf 'stopped\n'
+      fi
+      ;;
+  esac
+}
+
+print_status() {
+  printf '%-34s %s\n' "HOST" "MASTER"
+  printf '%-34s %s\n' "----" "------"
+  while IFS= read -r host; do
+    [[ -n "$host" ]] || continue
+    printf '%-34s %s\n' "$host" "$(master_status "$host")"
+  done < <(marvin_hosts)
+}
+
+start_master() {
+  local host="$1"
+
+  if ssh -O check "$host" >/dev/null 2>&1; then
+    printf '%s already has a running master.\n' "$host"
+    return 0
+  fi
+
+  mkdir -p "$HOME/.ssh/controlmasters"
+  chmod 700 "$HOME/.ssh/controlmasters"
+
+  ssh -fN \
+    -o RequestTTY=no \
+    -o ControlMaster=yes \
+    -o ControlPersist="$CONTROL_PERSIST" \
+    -o ExitOnForwardFailure=yes \
+    "$host"
+}
+
+stop_master() {
+  local host="$1"
+  ssh -O exit "$host"
+}
+
+clean_stale() {
+  local only_host="${1:-}"
+  local host path
+
+  while IFS= read -r host; do
+    [[ -n "$host" ]] || continue
+    [[ -z "$only_host" || "$host" == "$only_host" ]] || continue
+
+    if ssh -O check "$host" >/dev/null 2>&1; then
+      continue
+    fi
+
+    path="$(control_path "$host")"
+    if [[ -n "$path" && -S "$path" ]]; then
+      rm -f "$path"
+      printf 'removed stale socket for %s\n' "$host"
+    fi
+  done < <(marvin_hosts)
+}
+
+choose_host() {
+  local selected
+
+  selected="$(
+    while IFS= read -r host; do
+      [[ -n "$host" ]] || continue
+      printf '%-34s %s\n' "$host" "$(master_status "$host")"
+    done < <(marvin_hosts) |
+      fzf --height 80% --border --prompt 'marvin host> ' \
+        --header 'Select a Marvin master target'
+  )" || return 1
+
+  awk '{print $1}' <<<"$selected"
+}
+
+choose_action() {
+  printf '%s\n' start shell stop restart status clean-stale quit |
+    fzf --height 80% --border --prompt 'action> ' \
+      --header 'start keeps a background ControlMaster; shell reuses it'
+}
+
+pause() {
+  printf '\nPress Enter to continue...'
+  IFS= read -r _
+}
+
+interactive() {
+  local action host
+
+  while true; do
+    clear
+    print_status
+    printf '\n'
+
+    action="$(choose_action)" || return 0
+    case "$action" in
+      quit)
+        return 0
+        ;;
+      status)
+        clear
+        print_status
+        pause
+        ;;
+      clean-stale)
+        clean_stale
+        pause
+        ;;
+      start|shell|stop|restart)
+        host="$(choose_host)" || continue
+        clear
+        case "$action" in
+          start)
+            start_master "$host"
+            ;;
+          shell)
+            start_master "$host" && ssh "$host"
+            ;;
+          stop)
+            stop_master "$host"
+            ;;
+          restart)
+            stop_master "$host" >/dev/null 2>&1 || true
+            start_master "$host"
+            ;;
+        esac
+        pause
+        ;;
+    esac
+  done
+}
+
+require_host() {
+  if [[ $# -ne 2 ]]; then
+    usage >&2
+    exit 2
+  fi
+}
+
+case "${1:-}" in
+  "")
+    interactive
+    ;;
+  status)
+    print_status
+    ;;
+  start)
+    require_host "$@"
+    start_master "$2"
+    ;;
+  stop)
+    require_host "$@"
+    stop_master "$2"
+    ;;
+  restart)
+    require_host "$@"
+    stop_master "$2" >/dev/null 2>&1 || true
+    start_master "$2"
+    ;;
+  shell)
+    require_host "$@"
+    start_master "$2" && ssh "$2"
+    ;;
+  clean-stale)
+    clean_stale "${2:-}"
+    ;;
+  -h|--help|help)
+    usage
+    ;;
+  *)
+    usage >&2
+    exit 2
+    ;;
+esac
