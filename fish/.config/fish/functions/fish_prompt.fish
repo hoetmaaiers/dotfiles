@@ -38,7 +38,7 @@ function fish_prompt
     # Hostname / Environment Logic
     # Using the built-in $hostname variable is faster than calling the command
     switch $hostname
-        case 's12-hpc*' 's12-develop' 's12-login'
+        case 's12-hpc*' 's12-develop' 's12-login' 'r12-*'
             echo -n (set_color bryellow)'⚡ '
         case '*'
             echo -n (set_color brgreen)'🏡 '
