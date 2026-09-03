@@ -1,7 +1,7 @@
 if status is-interactive
     #########################################################
     # alias & abbr
-    abbr --add ls 'eza'
+    abbr --add ls eza
     abbr --add lla 'eza -lah'
     abbr --add ll 'eza -lah'
     abbr --add lt 'eza --tree'
@@ -11,8 +11,8 @@ if status is-interactive
     fish_vi_key_bindings
 
     fish_add_path $HOME/.local/bin
-    fish_add_path $HOME/.pixi/bin
     fish_add_path $HOME/.cargo/bin
+    fish_add_path $HOME/opencode/bin
 
     # greeting (single line)
     set -g fish_greeting "One line at a time."
@@ -77,7 +77,6 @@ if test (uname -s) = Darwin
         fish_add_path $HOME/.lmstudio/bin
     end
 end
-
 
 # opencode
 fish_add_path /Users/robin/.opencode/bin
