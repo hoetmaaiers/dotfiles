@@ -1,79 +1,53 @@
 function fish_prompt
     set -l last_status $status
     set -l normal (set_color normal)
-    set -l bold_blue (set_color -o brblue)
-    set -l brwhite (set_color brwhite)
 
-    # Initialize color variables with defaults if not set
-    # Extract only the color name (first word) to handle cases where --theme flags are included
-    set -l cwd_color brblue
-    if set -q fish_color_cwd; and test -n "$fish_color_cwd"
-        set -l color_val (string trim (echo $fish_color_cwd | string split ' ')[1])
-        if test -n "$color_val"
-            set cwd_color $color_val
-        end
-    end
+    # Stronger versions of the Maple Mono preview colors for light backgrounds.
+    set -l user_color (set_color --italics 9A6700)
+    set -l label_color (set_color 57606A)
+    set -l path_color (set_color 1A7F37)
+    set -l branch_color (set_color 0969DA)
+    set -l prompt_color (set_color 8250DF)
+    set -l error_color (set_color CF222E)
 
-    set -l error_color red
-    if set -q fish_color_error; and test -n "$fish_color_error"
-        set -l color_val (string trim (echo $fish_color_error | string split ' ')[1])
-        if test -n "$color_val"
-            set error_color $color_val
-        end
-    end
-
-    # Ensure colors are never empty
-    test -n "$cwd_color"; or set cwd_color brblue
-    test -n "$error_color"; or set error_color red
-
-    # --- 1. Top Line: Environment & Path ---
-
-    # Devenv Logic
+    # Keep development environments visible without changing the prompt shape.
     if set -q DEVENV_PROJECT_NAME
-        echo -n (set_color cyan)"❄️ "(set_color -o green)"[$DEVENV_PROJECT_NAME] "
+        echo -n -s (set_color 0550AE)'❄ ' $label_color'['(set_color 1A7F37)$DEVENV_PROJECT_NAME$label_color'] '
     else if set -q DEVENV_STATE
-        echo -n (set_color cyan)"❄️ (devenv) "
+        echo -n -s (set_color 0550AE)'❄ ' $label_color'[devenv] '
     end
 
-    # Hostname / Environment Logic
-    # Using the built-in $hostname variable is faster than calling the command
-    switch $hostname
-        case 's12-hpc*' 's12-develop' 's12-login' 'r12-*'
-            echo -n (set_color bryellow)'⚡ '
-        case '*'
-            echo -n (set_color brgreen)'🏡 '
+    set -l identity $USER
+    if set -q SSH_TTY
+        set identity "$USER@$hostname"
     end
 
-    # User & Host (only show if SSH or Root)
-    if set -q SSH_TTY; or functions -q fish_is_root_user; and fish_is_root_user
-        echo -n (set_color brmagenta)(whoami)"@$hostname "
+    if functions -q fish_is_root_user; and fish_is_root_user
+        set user_color $error_color
     end
 
-    # Current Directory
     set -q fish_prompt_pwd_dir_length; or set -lx fish_prompt_pwd_dir_length 0
-    echo -n (set_color $cwd_color)(prompt_pwd)
+    echo -n -s $user_color$identity' ' $label_color'in ' $path_color(prompt_pwd)
 
-    # VCS Prompt
-    echo -n (set_color brpurple)(fish_vcs_prompt)
+    set -l branch (command git symbolic-ref --quiet --short HEAD 2>/dev/null)
+    if test -z "$branch"
+        set branch (command git rev-parse --short HEAD 2>/dev/null)
+    end
+    if test -n "$branch"
+        echo -n -s ' ' $label_color'on ' $branch_color' '$branch
+    end
 
-    # --- 2. Error Handling & New Line ---
-
-    set -l suffix '❯'
-    set -l status_color (set_color brgreen)
+    set -l suffix '❯ '
 
     if test $last_status -ne 0
-        set status_color (set_color $error_color)
-        echo -n " " (set_color -b $error_color $brwhite)" $last_status "(set_color normal)
-        set suffix '✖'
+        echo -n -s ' ' $error_color"[$last_status]"
+        set prompt_color $error_color
     end
 
-    # Root user suffix change
     if functions -q fish_is_root_user; and fish_is_root_user
-        set suffix '#'
+        set suffix '# '
     end
 
-    # Final prompt line
-    echo ""
-    test -n "$status_color"; or set status_color (set_color brgreen)
-    echo -n -s $status_color $suffix ' ' $normal
+    echo
+    echo -n -s $prompt_color$suffix$normal
 end
