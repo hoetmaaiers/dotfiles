@@ -9,6 +9,11 @@ function fish_prompt
     set -l branch_color (set_color 0969DA)
     set -l prompt_color (set_color 8250DF)
     set -l error_color (set_color CF222E)
+    set -l rule_color (set_color 8B949E)
+
+    # Blank line + dim rule so each command block is easy to scan in scrollback.
+    echo
+    echo -s $rule_color (string repeat -Nn $COLUMNS '─') $normal
 
     # Keep development environments visible without changing the prompt shape.
     if set -q DEVENV_PROJECT_NAME
@@ -27,20 +32,20 @@ function fish_prompt
     end
 
     set -q fish_prompt_pwd_dir_length; or set -lx fish_prompt_pwd_dir_length 0
-    echo -n -s $user_color$identity' ' $label_color'in ' $path_color(prompt_pwd)
+    echo -n -s $user_color $identity ' ' $label_color 'in ' $path_color (prompt_pwd)
 
     set -l branch (command git symbolic-ref --quiet --short HEAD 2>/dev/null)
     if test -z "$branch"
         set branch (command git rev-parse --short HEAD 2>/dev/null)
     end
     if test -n "$branch"
-        echo -n -s ' ' $label_color'on ' $branch_color' '$branch
+        echo -n -s ' ' $label_color 'on ' $branch_color ' ' $branch
     end
 
     set -l suffix '❯ '
 
     if test $last_status -ne 0
-        echo -n -s ' ' $error_color"[$last_status]"
+        echo -n -s ' ' $error_color "[$last_status]"
         set prompt_color $error_color
     end
 
@@ -49,5 +54,5 @@ function fish_prompt
     end
 
     echo
-    echo -n -s $prompt_color$suffix$normal
+    echo -n -s $prompt_color $suffix $normal
 end
