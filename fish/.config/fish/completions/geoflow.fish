@@ -1,0 +1,1 @@
+complete --command geoflow --no-files --arguments "(env _GEOFLOW_COMPLETE=complete_fish _TYPER_COMPLETE_FISH_ACTION=get-args _TYPER_COMPLETE_ARGS=(commandline -cp) geoflow)" --condition "env _GEOFLOW_COMPLETE=complete_fish _TYPER_COMPLETE_FISH_ACTION=is-args _TYPER_COMPLETE_ARGS=(commandline -cp) geoflow"

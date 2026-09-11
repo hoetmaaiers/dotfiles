@@ -11,9 +11,13 @@ function fish_prompt
     set -l error_color (set_color CF222E)
     set -l rule_color (set_color 8B949E)
 
-    # Blank line + dim rule so each command block is easy to scan in scrollback.
+    # Blank line + short dim rule (fixed width so it never wraps on resize).
+    set -l rule_width 48
+    if test -n "$COLUMNS"; and test $COLUMNS -gt 1
+        set rule_width (math min $rule_width, $COLUMNS - 1)
+    end
     echo
-    echo -s $rule_color (string repeat -Nn $COLUMNS '─') $normal
+    echo -s $rule_color (string repeat -Nn $rule_width '─') $normal
 
     # Keep development environments visible without changing the prompt shape.
     if set -q DEVENV_PROJECT_NAME
