@@ -10,4 +10,4 @@ SETUVAR fish_pager_color_selected_background:\x2d\x2dbackground\x3dcyan
 SETUVAR fish_pager_color_selected_completion:normal\x1e\x2d\x2dbold
 SETUVAR fish_pager_color_selected_description:normal
 SETUVAR fish_pager_color_selected_prefix:brcyan\x1e\x2d\x2dbold
-SETUVAR fish_user_paths:/home/houdmeyr/\x2ecargo/bin\x1e/home/houdmeyr/\x2epixi/bin\x1e/home/houdmeyr/\x2elocal/bin\x1e/home/houdmeyr/bin
+SETUVAR fish_user_paths:/Users/robin/\x2eopencode/bin\x1e/Users/robin/\x2elmstudio/bin\x1e/Users/robin/\x2ecargo/bin\x1e/Users/robin/\x2epixi/bin\x1e/Users/robin/\x2elocal/bin\x1e/home/houdmeyr/\x2ecargo/bin\x1e/home/houdmeyr/\x2epixi/bin\x1e/home/houdmeyr/\x2elocal/bin\x1e/home/houdmeyr/bin

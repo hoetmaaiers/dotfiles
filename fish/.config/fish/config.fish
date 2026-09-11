@@ -56,6 +56,25 @@ if status is-interactive
         env TERM=xterm-256color command ngrok $argv
     end
 
+    function mcp-sync-remote
+        set source ~/.config/mcp-sync/config.json
+        set hosts develop.marvin.vito.local
+
+        # Eerst lokaal syncen
+        mcp-sync sync; or return 1
+
+        for host in $hosts
+            echo "Syncing MCP config to $host"
+
+            ssh $host 'mkdir -p ~/.config/mcp-sync'; or return 1
+
+            rsync -az $source \
+                $host:~/.config/mcp-sync/config.json; or return 1
+
+            ssh $host 'mcp-sync sync'; or return 1
+        end
+    end
+
     set -gx VITO_USERNAME houdmeyr # static VITO username
     set -gx VITO_EMAIL robin.houdmeyers@vito.be # static VITO email address
 
@@ -80,3 +99,4 @@ end
 
 # opencode
 fish_add_path /Users/robin/.opencode/bin
+set -x PATH /home/houdmeyr/.opencode/bin $PATH
