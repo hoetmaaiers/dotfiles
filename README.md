@@ -37,6 +37,7 @@ brew bundle
 | `nix` | `~/.config/nix/nix.conf` |
 | `nvim` | `~/.config/nvim/` |
 | `proxychains` | `~/.proxychains/proxychains.conf` |
+| `ssh` | `~/.ssh/config` |
 | `tmux` | `~/.tmux.conf` |
 | `tmuxinator` | `~/.config/tmuxinator/` |
 | `vim` | `~/.vscodevimrc` |
