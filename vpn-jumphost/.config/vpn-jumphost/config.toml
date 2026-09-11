@@ -74,3 +74,8 @@ direct = ["byod.vito.be"]
 [credentials]
 # username_file = "/run/secrets/vpn_user"
 # password_file = "/run/secrets/vpn_pass"
+
+[probe]
+hosts = ["byod.vito.be:443", "channelv.vito.local:80"]
+# timeout_secs = 10
+# retries = 0
