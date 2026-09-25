@@ -7,6 +7,7 @@ if status is-interactive
     abbr --add lt 'eza --tree'
     abbr -a gca 'git commit --amend'
     abbr -a gcaf 'git commit --amend --no-edit'
+    abbr -a -g px 'pixi shell --as-is'
 
     fish_vi_key_bindings
 
