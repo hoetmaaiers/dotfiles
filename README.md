@@ -29,7 +29,7 @@ brew bundle
 | `atuin` | `~/config.toml` |
 | `colima` | `~/.colima/_templates/default.yaml` |
 | `direnv` | `~/.config/direnv/` |
-| `fish` | `~/.config/fish/` |
+| `fish` | `~/.config/fish/` (incl. `conf.d/ssh_auth_sock.fish`) |
 | `git` | `~/.gitconfig` |
 | `herdr` | `~/.config/herdr/config.toml` |
 | `lmod` | modulefiles under `~/dotfiles/lmod/modules` (used from fish) |
@@ -37,7 +37,7 @@ brew bundle
 | `nix` | `~/.config/nix/nix.conf` |
 | `nvim` | `~/.config/nvim/` |
 | `proxychains` | `~/.proxychains/proxychains.conf` |
-| `ssh` | `~/.ssh/config` |
+| `ssh` | `~/.ssh/config`, `~/.ssh/rc` |
 | `tmux` | `~/.tmux.conf` |
 | `tmuxinator` | `~/.config/tmuxinator/` |
 | `vim` | `~/.vscodevimrc` |
@@ -78,6 +78,35 @@ colima start
 ```
 
 Do not commit runtime state under `~/.colima/` (`_lima/`, sockets, `daemon/`, etc.).
+
+## SSH
+
+### Stable agent sock (`ssh` + `fish`)
+
+OpenSSH agent sockets under `/tmp/ssh-…` die when the forwarding connection ends.
+Persistent tools (Herdr, tmux) keep the old `SSH_AUTH_SOCK` in pane env. Keep a
+fixed path instead:
+
+1. `ssh/.ssh/rc` → `~/.ssh/rc` — on each ForwardAgent SSH session (no stdout),
+   `ln -sf "$SSH_AUTH_SOCK" ~/.ssh/ssh_auth_sock`
+2. `fish/.../conf.d/ssh_auth_sock.fish` — if that symlink exists, export
+   `SSH_AUTH_SOCK` to the **symlink path** (not the resolved `/tmp` path), so
+   local Mac `IdentityAgent` stays untouched when the link is absent
+
+On Marvin (or any host where you use Herdr/tmux with a forwarded agent):
+
+```bash
+cd ~/dotfiles
+git pull
+stow fish
+# If `stow ssh` conflicts on an adopted ~/.ssh/config, link only rc:
+#   ln -sfn ~/dotfiles/ssh/.ssh/rc ~/.ssh/rc
+# else:
+stow ssh
+```
+
+Reconnect SSH/Herdr once so `rc` creates the symlink, then in a **new** fish
+shell: `test -L $SSH_AUTH_SOCK; and ssh-add -l`.
 
 ## Fish
 
