@@ -24,23 +24,23 @@ brew bundle
 
 ### Packages
 
-| Package | Main targets |
-|---------|--------------|
-| `atuin` | `~/config.toml` |
-| `colima` | `~/.colima/_templates/default.yaml` |
-| `direnv` | `~/.config/direnv/` |
-| `fish` | `~/.config/fish/` (incl. `conf.d/ssh_auth_sock.fish`) |
-| `git` | `~/.gitconfig` |
-| `herdr` | `~/.config/herdr/config.toml` |
-| `lmod` | modulefiles under `~/dotfiles/lmod/modules` (used from fish) |
-| `lsd` | `~/.config/lsd/config.yml` |
-| `nix` | `~/.config/nix/nix.conf` |
-| `nvim` | `~/.config/nvim/` |
-| `proxychains` | `~/.proxychains/proxychains.conf` |
-| `ssh` | `~/.ssh/config`, `~/.ssh/rc` |
-| `tmux` | `~/.tmux.conf` |
-| `tmuxinator` | `~/.config/tmuxinator/` |
-| `vim` | `~/.vscodevimrc` |
+| Package       | Main targets                                                 |
+| ------------- | ------------------------------------------------------------ |
+| `atuin`       | `~/config.toml`                                              |
+| `colima`      | `~/.colima/_templates/default.yaml`                          |
+| `direnv`      | `~/.config/direnv/`                                          |
+| `fish`        | `~/.config/fish/` (incl. `conf.d/ssh_auth_sock.fish`)        |
+| `git`         | `~/.gitconfig`                                               |
+| `herdr`       | `~/.config/herdr/config.toml`                                |
+| `lmod`        | modulefiles under `~/dotfiles/lmod/modules` (used from fish) |
+| `lsd`         | `~/.config/lsd/config.yml`                                   |
+| `nix`         | `~/.config/nix/nix.conf`                                     |
+| `nvim`        | `~/.config/nvim/`                                            |
+| `proxychains` | `~/.proxychains/proxychains.conf`                            |
+| `ssh`         | `~/.ssh/config`, `~/.ssh/rc`                                 |
+| `tmux`        | `~/.tmux.conf`                                               |
+| `tmuxinator`  | `~/.config/tmuxinator/`                                      |
+| `vim`         | `~/.vscodevimrc`                                             |
 
 Stow multiple at once: `stow fish git tmux`.
 
@@ -99,14 +99,21 @@ On Marvin (or any host where you use Herdr/tmux with a forwarded agent):
 cd ~/dotfiles
 git pull
 stow fish
-# If `stow ssh` conflicts on an adopted ~/.ssh/config, link only rc:
-#   ln -sfn ~/dotfiles/ssh/.ssh/rc ~/.ssh/rc
-# else:
-stow ssh
 ```
 
-Reconnect SSH/Herdr once so `rc` creates the symlink, then in a **new** fish
-shell: `test -L $SSH_AUTH_SOCK; and ssh-add -l`.
+`stow ssh` usually **aborts** when `~/.ssh/config` is a real file (not a Stow
+link), e.g. `existing target is neither a link nor a directory: .ssh/config`.
+That is expected. For the agent sock you only need `rc`:
+
+```bash
+ln -sfn ~/dotfiles/ssh/.ssh/rc ~/.ssh/rc
+```
+
+Use `stow ssh` only when `~/.ssh/config` is already managed by this package (or
+after `stow --adopt ssh`).
+
+Reconnect SSH/Herdr once so `rc` creates `~/.ssh/ssh_auth_sock`, then in a
+**new** fish shell: `test -L $SSH_AUTH_SOCK; and ssh-add -l`.
 
 ## Fish
 
