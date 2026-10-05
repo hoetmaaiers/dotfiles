@@ -97,6 +97,11 @@ focus_pane_left = "ctrl+h"
 focus_pane_down = "ctrl+j"
 focus_pane_up = "ctrl+k"
 focus_pane_right = "ctrl+l"
+# Resize the focused pane directly rather than launching detached CLI commands.
+resize_pane_left = "shift+left"
+resize_pane_down = "shift+down"
+resize_pane_up = "shift+up"
+resize_pane_right = "shift+right"
 # cycle_pane_next = "prefix+tab"
 # cycle_pane_previous = "prefix+shift+tab"
 # last_pane = ""          # optional, unset by default; bind e.g. "prefix+tab" for global back-and-forth
@@ -135,26 +140,6 @@ type = "popup"
 command = "/Users/robin/dotfiles/herdr/.config/herdr/scripts/marvin-masters"
 width = "80%"
 height = "80%"
-
-[[keys.command]]
-key = "shift+left"
-type = "shell"
-command = "herdr pane resize --direction left --amount .1"
-
-[[keys.command]]
-key = "shift+down"
-type = "shell"
-command = "herdr pane resize --direction down --amount .1"
-
-[[keys.command]]
-key = "shift+up"
-type = "shell"
-command = "herdr pane resize --direction up --amount .1"
-
-[[keys.command]]
-key = "shift+right"
-type = "shell"
-command = "herdr pane resize --direction right --amount .1"
 
 # Legacy indexed shortcut config is still parsed for compatibility.
 # Prefer switch_tab, switch_workspace, and focus_agent for new configs.
