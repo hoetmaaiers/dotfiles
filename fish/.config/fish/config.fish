@@ -15,17 +15,20 @@ if status is-interactive
     fish_add_path $HOME/.cargo/bin
     fish_add_path $HOME/opencode/bin
 
+    set -gx EDITOR nvim
+    set -gx VISUAL nvim
+
     # greeting (single line)
     set -g fish_greeting "One line at a time."
-
-    # zoxide (if installed)
-    if type -q zoxide
-        zoxide init fish | source
-    end
 
     # Homebrew (Apple Silicon default prefix)
     if test -d /opt/homebrew
         /opt/homebrew/bin/brew shellenv | source
+    end
+
+    # zoxide (if installed)
+    if type -q zoxide
+        zoxide init fish | source
     end
 
     # Lmod / modules (Linux/HPC)
